@@ -1,0 +1,23 @@
+// Ant Design custom overrides
+.ant-card {
+  border-radius: 12px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.ant-btn {
+  border-radius: 8px;
+}
+
+.ant-slider {
+  margin-bottom: 16px;
+}
+
+.comparison-table {
+  overflow-x: auto;
+
+  table {
+    min-width: 800px;
+  }
+}

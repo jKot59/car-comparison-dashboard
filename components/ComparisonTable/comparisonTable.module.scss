@@ -1,0 +1,113 @@
+.empty {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.price_icon {
+  color: #52c41a;
+}
+
+.price_text {
+  font-size: 18px;
+  color: #52c41a;
+}
+
+.rating_icon {
+  color: #faad14;
+}
+
+.rate {
+  font-size: 16px;
+}
+
+.rating_text {
+  margin-top: 4px;
+}
+
+.type {
+  margin-top: 8px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title_wrapper {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+}
+
+.grid_wrapper {
+  overflow-x: auto;
+}
+
+.grid {
+  display: grid;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grid_name {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  font-weight: bold;
+}
+
+.car_title_wrapper {
+  padding: 16px;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.car_title {
+  margin: 8px 0 0;
+}
+
+.car_label {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  font-weight: 500;
+  gap: 8px;
+}
+
+.car_data {
+  padding: 16px;
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

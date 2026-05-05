@@ -1,7 +1,25 @@
-import type { NextConfig } from "next";
+const nextConfig = {
+  reactStrictMode: false,
 
-const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
+  headers: async () => [
+    {
+      source: '/cars.json',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=3600, stale-while-revalidate=86400',
+        },
+      ],
+    },
+  ],
 };
 
-export default nextConfig;
+module.exports = nextConfig;
