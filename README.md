@@ -1,7 +1,5 @@
 # Car Comparison Dashboard
 
-A modern, SEO-friendly web application for comparing car models side-by-side. Built with Next.js 14, Ant Design, and TypeScript.
-
 ## Features
 
 - **Car Listings**: Browse 10+ cars with images, prices, ratings, and specs
