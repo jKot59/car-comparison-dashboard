@@ -2,10 +2,11 @@ import { notFound } from 'next/navigation';
 import { Car } from '@/types/car';
 import Image from 'next/image';
 import { Card, Descriptions, Rate, Tag, Button } from 'antd';
-import { DollarOutlined, ThunderboltOutlined, StarOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { DollarOutlined, StarOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import styles from './page.module.scss';
+import carsData from '@/public/cars.json';
 
 async function getCar(id: string): Promise<Car | null> {
   const fs = await import('fs');
@@ -14,6 +15,15 @@ async function getCar(id: string): Promise<Car | null> {
   const data = await fs.promises.readFile(filePath, 'utf-8');
   const cars: Car[] = JSON.parse(data);
   return cars.find((car) => car.id === id) || null;
+}
+
+// Generate static paths for all car IDs
+export async function generateStaticParams() {
+  const cars = carsData;
+
+  return cars.map((car) => ({
+    id: car.id,
+  }));
 }
 
 export async function generateMetadata(id: string): Promise<Metadata> {
