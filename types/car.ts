@@ -6,8 +6,6 @@ export interface Car {
   weight: number;
   rating: number;
   type: string;
-  fuelEfficiency: number;
-  horsepower: number;
   image: string;
 }
 

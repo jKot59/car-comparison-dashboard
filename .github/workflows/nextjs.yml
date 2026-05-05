@@ -31,7 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -49,20 +48,19 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+          #
+          # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
-
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -73,55 +71,10 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-
-      # 🔥 FIX: Verify and copy cars.json to the output directory
-      - name: Verify and copy cars.json
-        run: |
-          echo "Checking if cars.json exists in public folder..."
-          if [ -f "public/cars.json" ]; then
-            echo "✅ cars.json found in public folder"
-            cat public/cars.json | head -n 5
-          else
-            echo "❌ cars.json NOT found in public folder"
-            exit 1
-          fi
-
-          echo "Checking out folder contents before copy..."
-          ls -la out/ || echo "out folder not found"
-
-          echo "Copying cars.json to out folder..."
-          mkdir -p out
-          cp public/cars.json out/cars.json
-
-          echo "Verifying copy was successful..."
-          if [ -f "out/cars.json" ]; then
-            echo "✅ cars.json successfully copied to out folder"
-            ls -la out/cars.json
-          else
-            echo "❌ Failed to copy cars.json"
-            exit 1
-          fi
-
-      # 🔥 OPTIONAL: Copy any other static assets if needed
-      - name: Copy additional static assets
-        run: |
-          # Copy images folder if it exists
-          if [ -d "public/images" ]; then
-            echo "Copying images folder..."
-            cp -r public/images out/images
-            echo "✅ Images copied successfully"
-          fi
-
-          # List all files in out folder for debugging
-          echo "Final out folder contents:"
-          ls -la out/
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

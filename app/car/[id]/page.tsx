@@ -6,15 +6,10 @@ import { DollarOutlined, StarOutlined, ArrowLeftOutlined } from '@ant-design/ico
 import Link from 'next/link';
 import { Metadata } from 'next';
 import styles from './page.module.scss';
-import carsData from '@/public/cars.json';
+import { carsData } from '@/data/cars';
 
 async function getCar(id: string): Promise<Car | null> {
-  const fs = await import('fs');
-  const path = await import('path');
-  const filePath = path.join(process.cwd(), 'public', 'cars.json');
-  const data = await fs.promises.readFile(filePath, 'utf-8');
-  const cars: Car[] = JSON.parse(data);
-  return cars.find((car) => car.id === id) || null;
+  return carsData.find((car) => car.id === id) || null;
 }
 
 // Generate static paths for all car IDs
@@ -31,7 +26,7 @@ export async function generateMetadata(id: string): Promise<Metadata> {
   if (!car) return { title: 'Car Not Found' };
   return {
     title: `${car.brand} ${car.model} | Specifications & Pricing`,
-    description: `View detailed specifications of ${car.brand} ${car.model}. Price: $${car.price}, Rating: ${car.rating}/5, Horsepower: ${car.horsepower} HP.`,
+    description: `View detailed specifications of ${car.brand} ${car.model}. Price: $${car.price}, Rating: ${car.rating}/5.`,
   };
 }
 

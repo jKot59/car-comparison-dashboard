@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Car, FilterState, SortOption } from '@/types/car';
 import { filterCars, sortCars, getAllBrands, getAllTypes, getPriceRange } from '@/utils/helpers';
+import { carsData } from '@/data/cars';
 
 export const useCars = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -16,20 +17,10 @@ export const useCars = () => {
   });
 
   useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        const response = await fetch('/cars.json');
-        const data = await response.json();
-        setCars(data);
-        const priceRange = getPriceRange(data);
-        setFilters((prev) => ({ ...prev, priceRange }));
-        setLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch cars:', error);
-        setLoading(false);
-      }
-    };
-    fetchCars();
+    setCars(carsData);
+    const priceRange = getPriceRange(carsData);
+    setFilters((prev) => ({ ...prev, priceRange }));
+    setLoading(false);
   }, []);
 
   useEffect(() => {
