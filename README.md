@@ -1,15 +1,5 @@
 # Car Comparison Dashboard
 
-## Features
-
-- **Car Listings**: Browse 10+ cars with images, prices, ratings, and specs
-- **Filtering**: Filter by price range, brand, and car type
-- **Sorting**: Sort by price, rating, or weight
-- **Comparison**: Select up to 4 cars and compare side-by-side
-- **SEO Optimized**: Dynamic metadata, SSG for car detail pages
-- **Responsive**: Works on mobile, tablet, and desktop
-- **Accessible**: Keyboard navigation, ARIA labels, skip-to-content link
-
 ## Tech Stack
 
 - Next.js 14 (App Router)
@@ -39,14 +29,14 @@
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone <this-repo-url>
 cd car-comparison-dashboard
 
 # Install dependencies
-npm install
+yarn install
 
 # Run development server
-npm run dev
+yarn dev
 
 # Open http://localhost:3000
 ```
