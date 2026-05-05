@@ -60,20 +60,8 @@ export const useComparisonStore = create<ComparisonState>()(
       }),
       {
         name: 'car-comparison-storage', // localStorage key
-        getStorage: () => localStorage,
         partialize: (state) => ({ comparisonCars: state.comparisonCars }),
       }
     )
   )
 );
-
-// Create selector hooks for better performance
-export const useComparisonCars = () => useComparisonStore((state) => state.comparisonCars);
-export const useComparisonCount = () => useComparisonStore((state) => state.comparisonCount);
-export const useIsInComparison = (carId: string) => useComparisonStore((state) => state.isInComparison(carId));
-export const useComparisonActions = () =>
-  useComparisonStore((state) => ({
-    addToComparison: state.addToComparison,
-    removeFromComparison: state.removeFromComparison,
-    clearComparison: state.clearComparison,
-  }));
