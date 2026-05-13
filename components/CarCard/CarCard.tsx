@@ -15,13 +15,13 @@ interface CarCardProps {
 export const CarCard = memo(({ car }: CarCardProps) => {
   const addToComparison = useComparisonStore((state) => state.addToComparison);
   const isInComparison = useComparisonStore((state) => state.isInComparison(car.id));
-  const comparisonCount = useComparisonStore((state) => state.comparisonCount);
+  const cars = useComparisonStore((state) => state.comparisonCars);
 
   const handleCompare = () => {
     addToComparison(car);
   };
 
-  const isMaxReached = comparisonCount >= 4 && !isInComparison;
+  const isMaxReached = cars.length >= 4 && !isInComparison;
 
   return (
     <Card

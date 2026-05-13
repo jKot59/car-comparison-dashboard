@@ -10,9 +10,6 @@ interface ComparisonState {
   removeFromComparison: (carId: string) => void;
   clearComparison: () => void;
   isInComparison: (carId: string) => boolean;
-
-  // Selectors (derived state)
-  comparisonCount: number;
 }
 
 export const useComparisonStore = create<ComparisonState>()(
@@ -35,7 +32,6 @@ export const useComparisonStore = create<ComparisonState>()(
 
           set((state) => ({
             comparisonCars: [...state.comparisonCars, car],
-            comparisonCount: state.comparisonCars.length + 1,
           }));
           return true;
         },
@@ -43,20 +39,16 @@ export const useComparisonStore = create<ComparisonState>()(
         removeFromComparison: (carId: string) => {
           set((state) => ({
             comparisonCars: state.comparisonCars.filter((car) => car.id !== carId),
-            comparisonCount: state.comparisonCars.length - 1,
           }));
         },
 
         clearComparison: () => {
-          set({ comparisonCars: [], comparisonCount: 0 });
+          set({ comparisonCars: [] });
         },
 
         isInComparison: (carId: string) => {
           return get().comparisonCars.some((car) => car.id === carId);
         },
-
-        // Derived state
-        comparisonCount: 0,
       }),
       {
         name: 'car-comparison-storage', // localStorage key
