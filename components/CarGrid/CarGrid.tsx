@@ -30,7 +30,7 @@ export const CarGrid = ({ cars, loading }: CarGridProps) => {
     <Row gutter={[24, 24]} className={styles.row}>
       {cars.map((car) => (
         <Col xs={24} sm={12} lg={8} xl={6} key={car.id}>
-          <CarCard car={car} />
+          <CarCard {...car} />
         </Col>
       ))}
     </Row>

@@ -8,11 +8,8 @@ import Image from 'next/image';
 import { useComparisonStore } from '@/stores/useComparisonStore';
 import styles from './carCard.module.scss';
 import { memo } from 'react';
-interface CarCardProps {
-  car: Car;
-}
 
-export const CarCard = memo(({ car }: CarCardProps) => {
+export const CarCard = memo((car: Car) => {
   const addToComparison = useComparisonStore((state) => state.addToComparison);
   const isInComparison = useComparisonStore((state) => state.isInComparison(car.id));
   const cars = useComparisonStore((state) => state.comparisonCars);
